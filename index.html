@@ -1,232 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>🎨 Regenesis AI Business Hub</title>
-    <style>
-        * { box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            margin: 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1000px; margin: 0 auto; background: white;
-            border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        .header {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-            color: white; padding: 30px; text-align: center;
-        }
-        .header h1 { margin: 0; font-size: 2.5em; }
-        .header p { opacity: 0.9; margin: 10px 0 0; }
-        
-        .dashboard-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-            padding: 30px;
-        }
-        @media (max-width: 768px) {
-            .dashboard-grid { grid-template-columns: 1fr; }
-        }
-        
-        .card {
-            background: #f8f9fa; border-radius: 15px; padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid #e9ecef;
-        }
-        .card h3 { color: #333; margin-top: 0; border-bottom: 2px solid #4CAF50; 
-                  padding-bottom: 10px; }
-        
-        .gauge {
-            background: white; padding: 15px; border-radius: 10px;
-            margin: 15px 0; border-left: 5px solid #4CAF50;
-        }
-        
-        #chat-container {
-            height: 400px; overflow-y: auto; padding: 15px;
-            background: white; border-radius: 10px; border: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
-        .message { margin: 10px 0; padding: 12px; border-radius: 10px; }
-        .user { background: #e3f2fd; margin-left: 20px; }
-        .ai { background: #f1f8e9; margin-right: 20px; }
-        
-        #chat-input {
-            width: 100%; padding: 15px; border: 2px solid #4CAF50;
-            border-radius: 10px; font-size: 16px; margin-top: 10px;
-        }
-        .btn {
-            background: #4CAF50; color: white; border: none; padding: 15px 30px;
-            border-radius: 10px; font-size: 16px; cursor: pointer; width: 100%;
-            margin-top: 10px; font-weight: bold;
-        }
-        .btn:hover { background: #45a049; }
-    </style>
+<title>AI Dashboard</title>
+<style>body{font-family:Arial;padding:20px;}#chat{border:2px solid blue;padding:20px;height:300px;overflow-y:scroll;}.ai{color:green;}.user{color:blue;}</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🎨 Regenesis AI Business Hub</h1>
-            <p>24/7 DeepSeek AI Assistant • Live Dashboard • APV: $790</p>
-        </div>
-        
-        <div class="dashboard-grid">
-            <div class="card">
-                <h3>💰 Financial Escape</h3>
-                <div class="gauge">
-                    <strong>APV Progress</strong><br>
-                    $790 / $1,500<br>
-                    <div style="background: #eee; height: 20px; border-radius: 10px; margin-top: 10px;">
-                        <div style="background: #4CAF50; height: 100%; width: 53%; border-radius: 10px;"></div>
-                    </div>
-                </div>
-                <div class="gauge">
-                    <strong>216-Day Clock</strong><br>
-                    187 days remaining<br>
-                    <div style="background: #eee; height: 20px; border-radius: 10px; margin-top: 10px;">
-                        <div style="background: #2196F3; height: 100%; width: 86%; border-radius: 10px;"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>🎨 Artistic Ascent</h3>
-                <div class="gauge">
-                    <strong>Active Quest</strong><br>
-                    Golden Retriever Portrait<br>
-                    APV: $790 | Hours: 6.6
-                </div>
-                <div class="gauge">
-                    <strong>Next Painting</strong><br>
-                    <button class="btn" onclick="askDeepSeek('What should I paint next?')">
-                        Ask DeepSeek for Subject
-                    </button>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>🤖 DeepSeek AI Assistant</h3>
-                <div id="chat-container">
-                    <div class="message ai">
-                        <strong>🤖 AI:</strong> Hello Daniel! I'm ready to help run your art business. 
-                        Ask me about pricing, strategy, or what to paint next.
-                    </div>
-                </div>
-                <input type="text" id="chat-input" placeholder="Ask DeepSeek anything..." />
-                <button class="btn" onclick="sendMessage()">Send Message</button>
-                
-                <div style="margin-top: 20px; text-align: center;">
-                    <button class="btn" style="background: #2196F3;" onclick="askDeepSeek('Give me today\'s business priorities')">
-                        🎯 Business Priorities
-                    </button>
-                    <button class="btn" style="background: #9C27B0;" onclick="askDeepSeek('Analyze my current APV and suggest next steps')">
-                        📊 APV Analysis
-                    </button>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>⚡ Quick Commands</h3>
-                <button class="btn" style="background: #FF9800;" onclick="askDeepSeek('Should I list the Golden Retriever portrait on eBay now?')">
-                    🛒 List on eBay
-                </button>
-                <button class="btn" style="background: #E91E63;" onclick="askDeepSeek('Create YouTube content strategy for my current artwork')">
-                    🎥 YouTube Strategy
-                </button>
-                <button class="btn" style="background: #607D8B;" onclick="askDeepSeek('Update my health and regeneration priorities')">
-                    🏥 Health Check
-                </button>
-                <button class="btn" style="background: #795548;" onclick="askDeepSeek('Generate daily painting schedule for maximum APV')">
-                    📅 Daily Schedule
-                </button>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        // Load config
-        const CONFIG = {
-            DEEPSEEK_API_KEY: 'sk-d7f66c03d67c43f2a158963bdbd5e27f',
-            SUPABASE_URL: 'https://yjbliuliiljxiqejjeta.supabase.co',
-            SUPABASE_KEY: 'sb_publishable_cElKnEmnoZ80QOaCxdy3sw_8jsBFMJB'
-        };
-        
-        async function askDeepSeek(question) {
-            const chat = document.getElementById('chat-container');
-            const input = document.getElementById('chat-input');
-            
-            // Show question
-            chat.innerHTML += `<div class="message user"><strong>👤 You:</strong> ${question}</div>`;
-            
-            // Show thinking
-            chat.innerHTML += `<div id="thinking" class="message ai"><strong>🤖 AI:</strong> Thinking...</div>`;
-            chat.scrollTop = chat.scrollHeight;
-            
-            // If no API key, show demo response
-            if (CONFIG.DEEPSEEK_API_KEY === 'sk-d7f66c03d67c43f2a158963bdbd5e27f') {
-                setTimeout(() => {
-                    document.getElementById('thinking').outerHTML = 
-                        `<div class="message ai"><strong>🤖 AI (Demo):</strong> To connect real DeepSeek API, update config.js with your API key. For now: "${question}" → Based on your APV of $790, focus on completing the Golden Retriever portrait to reach $1,500 threshold.</div>`;
-                    chat.scrollTop = chat.scrollHeight;
-                }, 1000);
-                return;
-            }
-            
-            try {
-                // Real API call
-                const response = await fetch('https://api.deepseek.com/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${CONFIG.DEEPSEEK_API_KEY}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        model: 'deepseek-chat',
-                        messages: [
-                            {
-                                role: 'system',
-                                content: 'You run Daniel\'s art business. Current APV: $790. Active artwork: Golden Retriever Portrait. 216-day deadline for $6,000. Focus on regeneration and business growth.'
-                            },
-                            { role: 'user', content: question }
-                        ],
-                        max_tokens: 1000
-                    })
-                });
-                
-                const data = await response.json();
-                const aiResponse = data.choices[0].message.content;
-                
-                // Replace thinking with response
-                document.getElementById('thinking').outerHTML = 
-                    `<div class="message ai"><strong>🤖 AI:</strong> ${aiResponse}</div>`;
-                
-            } catch (error) {
-                document.getElementById('thinking').outerHTML = 
-                    `<div class="message ai" style="color: red;"><strong>🤖 Error:</strong> ${error.message}. Update config.js with your DeepSeek API key.</div>`;
-            }
-            
-            chat.scrollTop = chat.scrollHeight;
-            input.value = '';
-        }
-        
-        function sendMessage() {
-            const input = document.getElementById('chat-input');
-            if (input.value.trim()) {
-                askDeepSeek(input.value.trim());
-            }
-        }
-        
-        // Enter key support
-        document.getElementById('chat-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-        
-        // Initial greeting
-        setTimeout(() => {
-            if (document.getElementById('chat-container').children.length === 1) {
-                askDeepSeek('Introduce yourself as my business AI assistant');
-            }
-        }, 1000);
-    </script>
+<h1>DeepSeek AI</h1>
+<div id="chat">Ready...</div>
+<input id="input" placeholder="Type..."/>
+<button onclick="send()">Send</button>
+<script>
+const API_KEY='sk-d7f66c03d67c43f2a158963bdbd5e27f';
+async function send(){
+const input=document.getElementById('input');
+const chat=document.getElementById('chat');
+const message=input.value;
+chat.innerHTML+=`<div class="user">You: ${message}</div>`;
+try{
+const response=await fetch('https://api.deepseek.com/chat/completions',{
+method:'POST',
+headers:{
+'Authorization':'Bearer '+API_KEY,
+'Content-Type':'application/json'},
+body:JSON.stringify({
+model:'deepseek-chat',
+messages:[{role:'user',content:message}],
+max_tokens:1000})});
+const data=await response.json();
+chat.innerHTML+=`<div class="ai">AI: ${data.choices[0].message.content}</div>`;
+}catch(error){
+chat.innerHTML+=`<div style="color:red">Error: ${error.message}</div>`;}
+input.value='';
+chat.scrollTop=chat.scrollHeight;}
+</script>
 </body>
 </html>
