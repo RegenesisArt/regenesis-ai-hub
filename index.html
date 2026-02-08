@@ -34,7 +34,7 @@ body:JSON.stringify({
 model:'deepseek-chat',
 messages:[{
 role:'system',
-content:'You run an art business. APV: $790. Goal: $6,000 in 187 days. Current artwork: Golden Retriever Portrait. Focus on business growth and artist regeneration.'},
+content:'You run an art business. APV: $790. Goal: $6,000 in 187 days. Current artwork: Golden Retriever Portrait. Focus on business growth and artist regeneration. RESPOND IN ENGLISH ONLY.'},
 {role:'user',content:message}],
 max_tokens:1000})});
 const data=await response.json();
