@@ -146,7 +146,7 @@
     <script>
         // Load config
         const CONFIG = {
-            DEEPSEEK_API_KEY: 'your-key-here',
+            DEEPSEEK_API_KEY: 'sk-d7f66c03d67c43f2a158963bdbd5e27f',
             SUPABASE_URL: 'https://yjbliuliiljxiqejjeta.supabase.co',
             SUPABASE_KEY: 'sb_publishable_cElKnEmnoZ80QOaCxdy3sw_8jsBFMJB'
         };
@@ -163,7 +163,7 @@
             chat.scrollTop = chat.scrollHeight;
             
             // If no API key, show demo response
-            if (CONFIG.DEEPSEEK_API_KEY === 'your-key-here') {
+            if (CONFIG.DEEPSEEK_API_KEY === 'sk-d7f66c03d67c43f2a158963bdbd5e27f') {
                 setTimeout(() => {
                     document.getElementById('thinking').outerHTML = 
                         `<div class="message ai"><strong>🤖 AI (Demo):</strong> To connect real DeepSeek API, update config.js with your API key. For now: "${question}" → Based on your APV of $790, focus on completing the Golden Retriever portrait to reach $1,500 threshold.</div>`;
