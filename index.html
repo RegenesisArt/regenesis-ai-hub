@@ -1,1 +1,31 @@
-<!DOCTYPE html><html><head><title>Regenesis AI Hub</title></head><body><h1>Dashboard Loading</h1></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regenesis AI Dashboard</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        #chat { border: 1px solid #ccc; padding: 20px; height: 300px; overflow-y: scroll; }
+        #input { width: 80%; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🤖 DeepSeek AI Business Hub</h1>
+    <div id="chat"></div>
+    <input id="input" placeholder="Ask DeepSeek..." />
+    <button onclick="sendMessage()">Send</button>
+    
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('input');
+            const chat = document.getElementById('chat');
+            
+            chat.innerHTML += `<div><b>You:</b> ${input.value}</div>`;
+            
+            // This will connect to DeepSeek API
+            chat.innerHTML += `<div><b>AI:</b> Thinking...</div>`;
+            
+            input.value = '';
+        }
+    </script>
+</body>
+</html>
